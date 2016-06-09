@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Boton</title>
+	<link rel="stylesheet" href="">
+	<style>
+		.blue{
+			position: absolute;
+			width:200px;
+			height:200px;
+			background-color: blue;
+			top:0;
+			left:0;			
+		}
+		.red{
+			position: absolute;
+			width:200px;
+			height:200px;
+			background-color: red;
+			top:0;
+			right:0;
+		}
+		.yellow{
+			position: absolute;
+			width:200px;
+			height:200px;
+			background-color: yellow;
+			bottom:0;
+			left:0;
+		}
+		.green{
+			position: absolute;
+			width:200px;
+			height:200px;
+			background-color: green;
+			bottom:0;
+			right:0;
+		}
+	</style>
+</head>
+<body>
+	<div class="blue"></div>
+	<div class="red"></div>
+	<div class="yellow"></div>
+	<div class="green"></div>
+
+	<script   src="https://code.jquery.com/jquery-2.2.4.min.js"   integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="   crossorigin="anonymous"></script>
+	<script>
+	$(function(){		
+		var array = [];
+		var colores = ["blue","red","yellow","green"];
+		var colores_random = [];
+
+		var random = function(min,max){
+			return Math.floor(Math.random() * (max - min + 1) + min);
+		}
+
+		for (var i = 0; i < 3; i++) {
+			colores_random.push(colores[random(0,3)]);
+		}
+
+		setInterval(function(){ 
+			$("body").css("background-color", colores_random.shift());
+		}, 1000);
+
+		$("div").click(function(){
+
+
+			
+			array.push($(this).prop("class"));
+
+			setInterval(function(){ 
+				$("body").css("background-color", array.shift());
+			}, 3000);			
+		});
+	})
+	</script>
+</body>
+</html>
