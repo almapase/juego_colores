@@ -52,28 +52,42 @@
 		var array = [];
 		var colores = ["blue","red","yellow","green"];
 		var colores_random = [];
+		var index = 0;
+		var contador = 0;
+		var max = 3;
 
 		var random = function(min,max){
 			return Math.floor(Math.random() * (max - min + 1) + min);
 		}
 
-		for (var i = 0; i < 3; i++) {
+		for (var i = 0; i < max; i++) {
 			colores_random.push(colores[random(0,3)]);
 		}
-
-		setInterval(function(){ 
-			$("body").css("background-color", colores_random.shift());
+		
+		setInterval(function() {
+			if(index < colores_random.length) {
+			    console.log(index);
+				$("body").css("background-color", colores_random[index]);
+				index++;
+			} else {
+				clearInterval();
+			}
 		}, 1000);
 
-		$("div").click(function(){
 
 
-			
+		$("div").click(function(){			
+
 			array.push($(this).prop("class"));
+			if (array[contador] == colores_random[contador]) {
+				$("body").css("background-color", colores_random[contador]);
+			} else {
+				alert("perdiste, perdiste,no hay peor que tu");
+			}
+			
 
-			setInterval(function(){ 
-				$("body").css("background-color", array.shift());
-			}, 3000);			
+			contador++;
+
 		});
 	})
 	</script>
